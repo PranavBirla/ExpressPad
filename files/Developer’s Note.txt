@@ -1,0 +1,22 @@
+Welcome to ExpressPad.
+
+This is a minimal note-taking application built with Node.js, Express, and the file system.
+There’s no database, no cloud sync, and no unnecessary complexity — just plain text files doing their job.
+
+This project focuses on:
+
+Understanding backend routing
+
+Working with the file system
+
+Clean UI with purposeful interactions
+
+Keeping things simple and readable
+
+Notes created here are meant for learning and experimentation, not long-term storage.
+If you’re reading this, feel free to delete it and create your own notes.
+
+Sometimes, simple tools are the best tools.
+
+— Pranav Birla (Developer)
+email - pranavbirla06@gmail.com
