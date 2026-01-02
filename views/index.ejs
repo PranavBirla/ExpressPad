@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div class="main w-full min-h-screen bg-zinc-900 text-white">
+
+
+        <header class="w-full py-10 flex justify-center">
+            <h1 class="
+      text-4xl md:text-5xl font-semibold tracking-tight text-zinc-100
+      transition-all duration-300 ease-out
+
+      /* base glow */
+      drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]
+      drop-shadow-[0_0_25px_rgba(59,130,246,0.45)]
+      drop-shadow-[0_0_45px_rgba(59,130,246,0.3)]
+
+      /* hover glow */
+      hover:drop-shadow-[0_0_18px_rgba(59,130,246,0.75)]
+      hover:drop-shadow-[0_0_45px_rgba(59,130,246,0.6)]
+      hover:drop-shadow-[0_0_80px_rgba(59,130,246,0.45)]
+    ">
+                Express<span class="text-blue-500">Pad</span>
+            </h1>
+        </header>
+
+
+
+
+
+
+
+
+        <div class="form p-10">
+            <form action="/create" method="post">
+                <input name="title" class="block px-5 py-2 bg-zinc-800 mt-2 w-full rounded-md outline-none" type="text"
+                    placeholder="Name of Note" id="titleInput">
+                <textarea name="details"
+                    class="block px-5 py-2 bg-zinc-800 resize-none mt-2 w-full rounded-md outline-none "
+                    name="text here" placeholder="Write the details here" id=""></textarea>
+                <input class="mt-2 px-6 py-2 rounded-md
+                   bg-blue-500 text-white font-medium
+                   transition-all duration-300
+                   hover:bg-blue-600
+                   hover:shadow-[0_0_18px_rgba(59,130,246,0.9)]
+                   hover:scale-105
+                   active:scale-95
+                   cursor-pointer" type="submit" value="create task" id="createBtn">
+            </form>
+        </div>
+        <div class="tasks p-10 flex gap-5 flex-wrap">
+
+            <% if(files.length>0){ %>
+                <% files.forEach(function(val){ %>
+
+                    <div class="task min-w-85 px-3 py-4 bg-zinc-800 rounded-md">
+                        <h1 class="tracking-tighter text-2xl">
+                            <%= val.replace(".txt", "" ) %>
+                        </h1>
+                        <div class="flex justify-between items-center mt-3">
+                            <a href="/file/<%= val %>"
+                                class="inline-block text-zinc-400 hover:scale-102 hover:text-zinc-200 transition-all duration-400">View
+                                Task...</a>
+                            <div class="flex gap-3 text-sm">
+                                <a href="/edit/<%= val %>"
+                                    class="text-zinc-400 hover:scale-115 hover:text-zinc-200 transition-all duration-400">edit</a>
+
+                                <a href="/delete/<%= val %>" class="inline-flex items-center justify-center p-1
+                                       rounded-full 
+                                      transition-all duration-300
+                                      hover:bg-red-500/20
+                                      hover:shadow-[0_0_12px_rgba(239,68,68,0.9)]
+                                      hover:scale-110" onclick="return confirm('Delete this note forever? 😬')">
+                                    <img src="/images/deleteIcon.svg" alt="" class="w-4 h-4 inline-block">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% }) %>
+                        <% } else { %>
+                            <h3 class="text-zinc-600">“No notes yet. Your thoughts are still loading…”</h3>
+                            <% } %>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+        const titleInput = document.getElementById("titleInput");
+        const createBtn = document.getElementById("createBtn");
+
+        function toggleButton() {
+            if (titleInput.value.trim().length > 0) {
+                createBtn.disabled = false;
+                createBtn.classList.remove(
+                    "bg-blue-500/40",
+                    "text-white/60",
+                    "cursor-not-allowed"
+                );
+                createBtn.classList.add(
+                    "bg-blue-500",
+                    "hover:bg-blue-600",
+                    "hover:shadow-[0_0_18px_rgba(59,130,246,0.9)]",
+                    "hover:scale-105",
+                    "cursor-pointer"
+                );
+            } else {
+                createBtn.disabled = true;
+                createBtn.classList.add(
+                    "bg-blue-500/40",
+                    "text-white/60",
+                    "cursor-not-allowed"
+                );
+                createBtn.classList.remove(
+                    "bg-blue-500",
+                    "hover:bg-blue-600",
+                    "hover:shadow-[0_0_18px_rgba(59,130,246,0.9)]",
+                    "hover:scale-105",
+                    "cursor-pointer"
+                );
+            }
+        }
+
+        toggleButton();
+
+        titleInput.addEventListener("input", toggleButton);
+    </script>
+
+</body>
+
+</html>
